@@ -1,0 +1,31 @@
+name: Yeet
+main: Zedstar16\Yeet\Yeet
+version: 1.0
+api: 3.7.1
+load: POSTWORLD
+author: Zedstar16
+description: YEEEEEEEEEEEET
+website: https://github.com/zedstar16/Yeet
+
+
+commands:
+ yeet:
+  description: "Skeleton plugin example command"
+  usage: "/yeet [player] <x> <y> <z>"
+  permission: yeet.cmd
+ yeetstick:
+  description: "Give yourself a stick to yeet players with"
+  usage: "/yeet <x> <y> <z>"
+  permission: yeet.stick
+
+permissions:
+ yeet:
+  default: op
+  description: "Yeet"
+ yeetstick:
+  default: op
+  description: "Yeet"
+  children:
+   yeetstick.use:
+    default: op
+    description: "Yeet"
