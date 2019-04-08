@@ -90,7 +90,7 @@ class Yeet extends PluginBase implements Listener {
 	        $p = $damager->getPlayer();
 	        $item = $p->getInventory()->getItemInHand();
 	        if($item->getNamedTag()->hasTag("yeet", IntArrayTag::class)){
-	            if($p->hasPermission("yeet.use")){
+	            if($p->hasPermission("yeetstick.use")){
 	                $entity = $event->getEntity();
 	                $entity->setMotion($this->getYeetPower($item));
 	                if($entity instanceof Player){
