@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Zedstar16/Yeet
+branches:
+- master
+projects:
+  Yeet:
+    path: ""
+    icon: “icon.png”
+...
