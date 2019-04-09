@@ -72,13 +72,6 @@ class Yeet extends PluginBase implements Listener {
 	return true;
 	}
 
-	public function getYeetPower(Item $item) : Vector3{
-	    $nbt = $item->getNamedTag()->getIntArray("yeet");
-	    $x = $nbt[0];
-	    $y = $nbt[1];
-	    $z = $nbt[2];
-	    return new Vector3($x, $y, $z);
-    }
 
     /**
      * @param EntityDamageByEntityEvent $event
@@ -90,9 +83,11 @@ class Yeet extends PluginBase implements Listener {
 	        $p = $damager->getPlayer();
 	        $item = $p->getInventory()->getItemInHand();
 	        if($item->getNamedTag()->hasTag("yeet", IntArrayTag::class)){
-	            if($p->hasPermission("yeetstick.use")){
+	            if($p->hasPermission("yeet.use")){
 	                $entity = $event->getEntity();
-	                $entity->setMotion($this->getYeetPower($item));
+                    $nbt = $item->getNamedTag()->getIntArray("yeet");
+                    $d = $p->getDirectionVector();
+	                $entity->setMotion(new Vector3(($nbt[0]*$d->getX()), ($nbt[1]), ($nbt[2]*$d->getZ())));
 	                if($entity instanceof Player){
 	                   $entity->getPlayer()->sendTip("§l§bYeet");
                     }
@@ -106,3 +101,4 @@ class Yeet extends PluginBase implements Listener {
    }
 
 }
+
