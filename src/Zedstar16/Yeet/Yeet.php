@@ -8,15 +8,14 @@ namespace Zedstar16\Yeet;
 use pocketmine\entity\Living;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\Listener;
+use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\Item;
-use pocketmine\item\Stick;
 use pocketmine\nbt\tag\IntArrayTag;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
-
-use pocketmine\nbt\tag\StringTag;
 use pocketmine\math\Vector3;
 class Yeet extends PluginBase implements Listener {
 
@@ -35,6 +34,7 @@ class Yeet extends PluginBase implements Listener {
 				                $p = $sender->getServer()->getPlayer($args[0]);
                                 $p->setMotion(new Vector3($args[1], $args[2], $args[3]));
                                 $p->sendTip("§l§bYeet");
+                                $sender->sendMessage("§bYeeted §a".$p->getName());
                             }else  $sender->sendMessage("§cX Y Z values must be §bnumeric");
 				        }else $sender->sendMessage("§c$args[0] is not §aonline");
                     }elseif(count($args) == 3){
@@ -57,12 +57,14 @@ class Yeet extends PluginBase implements Listener {
                     if (count($args) == 3 && is_numeric($args[0]) && is_numeric($args[1]) && is_numeric($args[2])) {
                         $p = $sender->getServer()->getPlayer($sender->getName());
                         $yeetstick = Item::get(280);
-                        $yeetstick->setCustomName("§b§l§kII§r §l§aYeet Stick§b §kII");
+                        $yeetstick->setCustomName("§r§b§l§kII§r §l§aYeet Stick§b §kII");
                         $yeetstick->setLore(["§6The legendary §dYeeter"]);
                         $nbt = $yeetstick->getNamedTag();
                         $nbt->setIntArray("yeet", $args);
                         $yeetstick->setCompoundTag($nbt);
+                        $yeetstick->addEnchantment(new EnchantmentInstance(new Enchantment(255, "", Enchantment::RARITY_COMMON, Enchantment::SLOT_ALL, Enchantment::SLOT_NONE, 1)));
                         $p->getInventory()->setItemInHand($yeetstick);
+                        $sender->sendMessage("§r§b§l§kII§r §l§aYeet Stick§b §kII§r §fgiven");
                     } else $sender->sendMessage("§aUsage: §b/yeetstick (x) (y) (z)");
                 }
 				return true;
@@ -101,4 +103,3 @@ class Yeet extends PluginBase implements Listener {
    }
 
 }
-
