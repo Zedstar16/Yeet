@@ -1,6 +1,8 @@
 # Yeet
 So this plugin is about yeeting players around,  :)
 
+Download a complied version [here](https://poggit.pmmp.io/ci/Zedstar16/Yeet/Yeet)
+
 - The (x) (y) (z) is the force and direction axix, i wouldnt go for values much higher than 5 as the server usually reverts the movement however feel free to experiment
 
 
